@@ -1,0 +1,280 @@
+:root{ /*estas son variables de css*/
+    --blanco:#ffffff;
+    --negro:#212121;
+    --primario:#ffc107;
+    --secundario:#0097a7;
+    --gris:#757575;
+    --grisclaro:#DFE9F3;
+}
+
+/*GLOBALES*/
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory; /*activa el scroll snap para toda la página con la dirección de eje y, puede ser mandatory o proximity*/
+}
+
+/*SCROLL*/
+.servicios,
+.navegacion-principal,
+.formulario{
+    scroll-snap-align: center; /*centra el scroll en los elementos seleccionados, se puede usar start y end también*/
+    scroll-snap-stop: always; /*detiene el scroll en el siguiente elemento, la otra opción es normal*/
+}
+
+*, *:before, *:after {
+    box-sizing: inherit; /*hack para box model*/
+  }
+
+body{
+    font-size: 16px; /* los códigos con selector html y body hacen que 1rem=10px */
+    font-family: "Krub", sans-serif; /* se aplica la fuente de google fonts a todo el texto del body. los h con 700, p y enlaces con 400 */
+    background-image: linear-gradient(to top, var(--grisclaro) 0%, var(--blanco) 100%); /*aplica un color degradado al fondo de la página, to top es la dirección*/
+}
+
+.contenedor{
+    max-width:120rem; /*tamaño maximo del contenedor, adaptándose a tamaños menores*/
+    margin: 0 auto; /*el 0 representa arriba y abajo, el auto representa izquiera y derecha*/
+}
+
+.boton{
+    background-color: var(--secundario);
+    color: var(--blanco);
+    padding: 1rem 3rem; /*1 para arriba y abajo, 3 para izquiera y derecha*/
+    margin-top: 3rem;
+    text-decoration:none;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase; /*pasar el texto a mayusculas*/
+    border-radius: .5rem; /*cambiar las esquinas de los bordes del elemento*/
+    width: 90%; /*cambiar ancho del elemento*/
+    text-align: center;
+    border: none;
+}
+
+.boton:hover{
+    cursor: pointer; /*para que aparezca el puntero al pasar por el boton, principalmente para el submit del formulario*/
+}
+
+@media (min-width: 768px) {
+    .boton{
+        width: auto; /*resetea el tamaño por defecto de la anchura del elemento*/
+    }
+}
+
+.sombra{
+    /*-webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.5);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.5); el webkit y el moz no son necesarios para la mayor parte de versiones de navegadores*/
+    box-shadow: 0px 5px 15px 0px rgba(112,112,112,0.5); /*código de css matic para la sombra de todo el main*/
+    background-color: var(--blanco);
+    border-radius: 1rem; /*cambia esquinas del borde*/
+    padding: 2rem;
+}
+
+/*TIPOGRAFÍA*/
+h1{
+    font-size: 3.8rem;
+}
+
+h2{
+    font-size: 2.8rem;
+} 
+
+h3{
+    font-size: 1.8rem;
+}
+
+h1,h2,h3{
+    text-align: center; /*los selectores de los headings son conocidos como design systems, bases para tu tipografía*/
+}
+/*TÍTULOS*/
+.titulo span{
+    font-size: 2rem;
+}
+
+/*UTILIDADES*/
+.w-sm-100{ /*utilizado para el submit del formulario*/
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .w-sm-100{
+        width: auto;
+    }
+}
+
+.flex{
+    display: flex;
+}
+
+.alinear-derecha{ /*utilizado para el submit del formulario*/
+    justify-content: flex-end;
+}
+
+/*NAVEGACIÓN PRINCIPAL*/
+.nav-bg{
+    background-color: var(--secundario);
+}
+
+.navegacion-principal{
+    display: flex; /*activa propiedades de flexbox para la clase o elemento seleccionado*/
+    flex-direction: column;
+}
+
+@media (min-width: 768px) { /* 480px para celulares, 768px para tablets, 1140px pc o laptop, 1400 o 1440px pantallas más grandes*/
+    .navegacion-principal{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.navegacion-principal a{
+    display: block; 
+    text-align: center;
+    color: var(--blanco);
+    text-decoration:none; /*quita el subrayado de los enlaces*/
+    font-size: 2rem;
+    font-weight: 700; /* bold=700 normal=400 */
+    padding: 1rem; /*aumenta el tamaño ocupado, en este caso de los enlaces recordar que un solo número de padding representa todos los lados*/
+}
+
+.navegacion-principal a:hover{ /*el hover es un evento de css o pseudoclase*/
+    background-color: var(--primario);
+    color: var(--negro);
+}
+
+/*hero*/
+.hero{
+    background-image: url(../img/hero.jpg); /*inserto la imagen con css*/
+    background-repeat: no-repeat; /*evita que la imagen se repita*/
+    background-size: cover; /*ajusta la imagen al ancho de la pantalla*/
+    height: 450px; /*altura de la imagen*/
+    position: relative;
+    margin-bottom: 2rem; /*para separar el hero de la sombra, también se puede usar un margin-top en la clase sombra*/
+}
+
+.contenido-hero{
+    position: absolute; /*se toma una posición absoluta con respecto a hero*/
+    background-color: rgba(0, 0 , 0, .7); /* anterior sintaxis para la transparencia*/
+    background-color: rgb(0 0 0 / 70%); /*nueva sintaxis*/
+    /*top: 0; 
+    right: 0;
+    left: 0;
+    bottom: 0; se coloca 0 a todas las coordenadas para abarcar todo el espacio del padre (hero)*/
+    width: 100%;
+    height: 100%; /*uso similar a las coordenadas para abarcar todo el espacio*/
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center; /*estos códigos con flexbox alinean el contenido tanto vertical como horizontalmente*/
+}
+
+.contenido-hero h2,
+.contenido-hero p {
+    color: var(--blanco);
+}
+
+.ubicacion{ /*para bloques se puede colocar por ejemplo .contenido-hero .ubicacion*/
+    display:flex;
+    align-items:flex-end;
+}
+
+/*SERVICIOS*/
+@media (min-width: 768px) {
+    .servicios{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /*divide en 3 columnas con el mismo valor de 1fr(también puede ser en px o %)*/
+        /*grid-template-columns: 1fr 1fr 1fr; lo mismo que el código anterior*/
+        /*grid-template-rows: 200px 200px 200px; ejemplo para colocar en filas*/
+        /*grid: 200px 800px / 300px 300px; ejemplo para crear 2 filas y 2 columnas en una sola propiedad*/
+        column-gap: 1rem; /*agrega separación entre columnas*/
+    }
+}
+
+.servicio{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3{
+    color: var(--secundario);
+    font-weight: normal; /*el normal puede ser 400, recordar que esto vino de google fonts*/
+}
+
+.servicio p{
+    line-height: 2; /*agrega interlineado al texto*/
+    text-align: center; /*se puede justificar con justify*/
+}
+
+.servicio .iconos{ /*funciona igual si solo se coloca .iconos sin necesidad del .servicio*/
+    width: 15rem;
+    height: 15rem;
+    background-color: var(--primario);
+    border-radius: 50%; /*transforma un cuadrado a un círculo*/
+    display:flex;
+    justify-content: space-evenly; /*para los íconos de android y apple*/
+    align-items: center;
+}
+
+/*CONTACTO*/
+.formulario{
+    background-color: var(--gris);
+    width: min(60rem, 100%); /*esto tomará el valor menor de los parámetros, es decir entre 60rem y 100%, lo que lo hace responsive*/
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 0 auto; /*centra el formulario*/
+}
+
+.formulario fieldset{
+    border: none; /*quita los bordes del fieldset*/
+}
+
+.formulario legend{
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    color: var(--primario);
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos{
+        display: grid;
+        grid-template-columns: 1fr 1fr; /*crea 2 columnas en el formulario*/
+        grid-template-rows: auto auto 20rem; /*crea 3 filas para el formulario, la tercera se le da una altura específica*/
+        column-gap: 1rem; /*separar las columnas*/
+    }
+    .campo:nth-child(3),/* pseudoclase que selecciona elementos en base al nombre que se haya colocado y la posición en paréntesis*/
+    .campo:nth-child(4){/* se selecciona la posición 4 también*/
+        grid-column: 1 / 3;/*posiciona el elemento en el rango de columnas indicadas, para esto sirve de ayuda firefox developer*/
+    }
+}
+
+.campo{
+    margin-bottom: 1rem;
+}
+
+.campo label{
+    color: var(--blanco);
+    font-weight: bold;
+    display: block; /*para que los label ocupen toda la línea*/
+    margin-bottom: .5rem;
+}
+
+.campo textarea{
+    height: 20rem;
+}
+
+.input-text{
+    width: 100%;
+    border: none;
+    border-radius: .5rem;
+    padding: 1.5rem;
+}
+
+/*FOOTER*/
+.footer{
+    text-align: center;
+}
